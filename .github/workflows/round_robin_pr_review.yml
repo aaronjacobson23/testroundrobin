@@ -1,0 +1,17 @@
+name: Round Robin PR Reviewer
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  assign_reviewer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Assign a reviewer in a round-robin fashion
+      run: |
+        # Your round-robin logic here
