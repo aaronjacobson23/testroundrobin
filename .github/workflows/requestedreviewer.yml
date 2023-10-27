@@ -1,0 +1,14 @@
+name: Get requested reviewer
+
+on:
+  pull_request:
+    types: [review_requested]
+
+jobs:
+  get_reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Print requested reviewer
+        run: echo "The requested reviewer is ${{ github.event.pull_request.requested_reviewer.login }}"
