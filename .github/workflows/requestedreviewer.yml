@@ -2,7 +2,7 @@ name: Echo payload
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [review_requested]
 
 jobs:
   echo_payload:
