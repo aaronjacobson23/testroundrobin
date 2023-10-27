@@ -1,12 +1,15 @@
-name: Echo payload
+name: Pull Request Review Requested
 
 on:
-  pull_request:
+  pull_request_review_requested:
     types: [review_requested]
 
 jobs:
-  echo_payload:
+  extract_reviewer:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo payload
-        run: echo '${{ toJson(github.event) }}'
+      - name: Extract reviewer
+        run: |
+          REVIEWER=$(echo '${{ toJson(github.event.requested_reviewer) }}')
+          REVIEWER_OBJ=$(echo "${REVIEWER}" | jq -r '.')
+          echo "Requested reviewer: ${REVIEWER_OBJ.login}"
