@@ -1,15 +1,15 @@
-name: Pull Request Review Requested
-
 on:
   pull_request:
     types: [review_requested]
 
 jobs:
-  extract_reviewer:
+  round_robin_review:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Extract reviewer
         run: |
           REVIEWER=$(echo '${{ toJson(github.event.requested_reviewer) }}')
           REVIEWER_OBJ=$(echo "${REVIEWER}" | jq -r '.')
-          echo "Requested reviewer: ${REVIEWER_OBJ.login}"
+          echo "Requested reviewer: ${REVIEWER_OBJ["login"]}"
