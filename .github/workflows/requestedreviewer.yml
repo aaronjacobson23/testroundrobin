@@ -1,14 +1,12 @@
-name: Get requested reviewer
+name: Echo payload
 
 on:
   pull_request:
-    types: [review_requested]
+    types: [opened, reopened]
 
 jobs:
-  get_reviewer:
+  echo_payload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Print requested reviewer
-        run: echo "The requested reviewer is ${{ github.event.pull_request.requested_reviewer.login }}"
+      - name: Echo pull request
+        run: echo '${{ toJson(github.event.pull_request) }}'
