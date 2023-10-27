@@ -1,7 +1,7 @@
 name: Pull Request Review Requested
 
 on:
-  pull_request_review_requested:
+  pull_request:
     types: [review_requested]
 
 jobs:
