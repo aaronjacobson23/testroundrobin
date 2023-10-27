@@ -2,11 +2,11 @@ name: Echo payload
 
 on:
   pull_request:
-    types: [review_requested]
+    types: [opened, reopened]
 
 jobs:
   echo_payload:
     runs-on: ubuntu-latest
     steps:
       - name: Echo payload
-        run: echo '${{ JSON.stringify(github.event) }}'
+        run: echo '${{ toJson(github.event) }}'
