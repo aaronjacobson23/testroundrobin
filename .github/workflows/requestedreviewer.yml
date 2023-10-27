@@ -8,5 +8,5 @@ jobs:
   echo_payload:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo pull request
-        run: echo '${{ toJson(github.event.pull_request) }}'
+      - name: Echo payload
+        run: echo '${{ JSON.stringify(github.event) }}'
